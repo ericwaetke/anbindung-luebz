@@ -1,0 +1,57 @@
+---
+import { getCollection } from "astro:content";
+
+const posts  = await getCollection('articles');
+---
+<div class="timeline">
+	{
+		posts.map((post) => (
+			<article>
+				<div class="graph">
+					<div class="vertical" />
+					<div class="dot" />
+					<div class="vertical" />
+				</div>
+				<div>
+				<h3>{post.data.title}</h3>
+				<p>{post.data.date}</p>
+				</div>
+			</article>
+		))
+	}
+</div>
+
+<style scoped>
+	.timeline {
+		display: flex;
+		flex-direction: column;
+	}
+	article {
+		display: flex;
+		/* align-items: center; */
+		gap: 1rem;
+		margin: 0;
+	
+		& .graph {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			flex-shrink: 0;
+			
+			& .vertical {
+				flex: 1;
+				width: 2px;
+				height: 100%;
+				background-color: rgba(0, 0, 0, 0.103);
+			}
+		
+			& .dot {
+				shrink: 0;
+				width: 6px;
+				height: 6px;
+				border-radius: 50%;
+				background-color: black;
+			}
+		}
+	}
+</style>

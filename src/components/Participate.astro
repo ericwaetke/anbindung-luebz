@@ -1,0 +1,70 @@
+---
+import Tags from "./Tags.astro";
+---
+
+<a>
+	<div>
+		<Tags date="bis zum 13.3.25" category="Umfrage" />
+		<h3>Wie soll die Bürgerinitiative gestaltet sein?</h3>
+		<p>
+			Basierend auf den Erkenntnissen der Namensumfrage, sind verschiedene Identitäten entstanden—jetzt entscheiden Sie!
+		</p>
+	</div>
+	<button type="button">An der Umfrage teilnehmen →</button>
+</a>
+
+<style scoped>
+	a {
+		display: flex;
+		flex-direction: column;
+		border: 2px solid var(--border-participate);
+		text-decoration: none;
+		width: 100%;
+		border-radius: 0.5rem;
+		padding: 1rem;
+		background-color: var(--background-participate);
+		cursor: pointer;
+		user-select: none;
+
+		& div {
+			display: flex;
+			flex-direction: column;
+			gap: 0.25rem;
+		}
+
+		& h3 {
+			font-size: 1.5rem;
+			margin: 0;
+		}
+
+		& p {
+			margin: 0;
+		}
+
+		& button {
+			background-color: var(--color-primary);
+			font-family: inherit;
+			font-size: 1.25rem;
+			width: 100%;
+			color: white;
+			border: none;
+			border-radius: 0.5rem;
+			padding: 0.5rem 1rem;
+			margin-top: 1rem;
+			margin: 1rem auto 0;
+			cursor: pointer;
+			box-shadow: 0px 4px 0px var(--color-button-shadow);
+			transition: transform var(--spring), box-shadow var(--spring);
+		}
+
+		&:hover button {
+			transform: translateY(-2px);
+			box-shadow: 0px 6px 0px var(--color-button-shadow);
+		}
+
+		&:active button {
+			transform: translateY(4px);
+			box-shadow: 0px 0px 0px var(--color-button-shadow);
+		}
+	}
+</style>

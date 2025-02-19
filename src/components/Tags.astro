@@ -1,0 +1,33 @@
+---
+export interface Props {
+	date: string;
+	category: string;
+}
+
+const { date, category } = Astro.props;
+---
+<p>
+	<span class="date">{date}</span>
+	<span>·</span>
+	<span class="category">{category}</span>
+</p>
+
+<style scoped>
+	p {
+		display: flex;
+		align-items: center;
+		gap: 0.25rem;
+		opacity: 0.5;
+		font-size: 1rem;
+		margin: 0;
+		
+		& .date {
+			font-weight: 600;
+		}
+		& .category {
+			text-transform: uppercase;
+			font-weight: 700;
+			font-size: 0.875rem;
+		}
+	}
+</style>
