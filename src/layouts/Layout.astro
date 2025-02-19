@@ -27,6 +27,10 @@ import { spring } from "motion"
 		--color-button-background: var(--color-primary);
 		--color-button-shadow: color-mix(in oklab, var(--color-primary) 50%, black 50%);
 
+		--color-timeline-current-border: color-mix(in srgb, var(--color-primary) 20%, white 0%);
+	}
+	* {
+		box-sizing: border-box;
 	}
 	body {
 		margin: 0 auto;
@@ -43,6 +47,7 @@ import { spring } from "motion"
 	}
 	h1 {
 		font-size: 2.5rem;
+		margin: 2rem 0;
 	}
 	h2 {
 		color: var(--color-primary);
@@ -50,8 +55,11 @@ import { spring } from "motion"
 		font-size: 1.5rem;
 		letter-spacing: 0.05em;
 		text-transform: uppercase;
+
+		margin: 2rem 0 0.5rem 0;
 	}
 	p {
 		font-size: 1.25rem;
+		margin: 0.5rem 0 0 0;
 	}
 </style>

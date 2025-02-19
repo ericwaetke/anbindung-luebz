@@ -10,6 +10,7 @@ const articles = defineCollection({
 	schema: z.object({
 		title: z.string(),
 		date: z.string(),
+		category: z.string(),
 		// content: z.string(),
 	}),
 });

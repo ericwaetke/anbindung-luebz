@@ -1,22 +1,30 @@
 ---
-import { getCollection } from "astro:content";
+import { getCollection } from "astro:content"
+import Tags from "./Tags.astro"
 
-const posts  = await getCollection('articles');
+const posts = await getCollection("articles")
 ---
+
 <div class="timeline">
 	{
 		posts.map((post) => (
-			<article>
-				<div class="graph">
-					<div class="vertical" />
-					<div class="dot" />
-					<div class="vertical" />
-				</div>
-				<div>
-				<h3>{post.data.title}</h3>
-				<p>{post.data.date}</p>
-				</div>
-			</article>
+			<a href={`/artikel/${post.id}`}>
+				<article>
+					<div class="graph">
+						<div class="vertical" />
+						<div class="dot" />
+						<div class="vertical" />
+					</div>
+					<div class="content">
+						<Tags
+							date={post.data.date}
+							category={post.data.category}
+						/>
+						<h3>{post.data.title}</h3>
+						<span>Mehr Erfahren →</span>
+					</div>
+				</article>
+			</a>
 		))
 	}
 </div>
@@ -25,32 +33,96 @@ const posts  = await getCollection('articles');
 	.timeline {
 		display: flex;
 		flex-direction: column;
+		width: 100%;
 	}
-	article {
-		display: flex;
-		/* align-items: center; */
-		gap: 1rem;
-		margin: 0;
-	
-		& .graph {
-			display: flex;
-			flex-direction: column;
-			align-items: center;
-			flex-shrink: 0;
-			
-			& .vertical {
-				flex: 1;
-				width: 2px;
-				height: 100%;
-				background-color: rgba(0, 0, 0, 0.103);
+
+	a {
+		text-decoration: none;
+		color: black;
+
+		&:first-child {
+			& .graph .vertical:first-child {
+				width: 0;
 			}
-		
-			& .dot {
-				shrink: 0;
-				width: 6px;
-				height: 6px;
-				border-radius: 50%;
-				background-color: black;
+
+			& .content {
+				border: 2px solid var(--color-timeline-current-border);
+
+				&::after {
+					content: "aktuell";
+					position: absolute;
+					top: 0;
+					right: 0;
+					padding: 2px 6px 0 6px;
+					background: var(--color-timeline-current-border);
+					border-radius: 0 0.375rem 0 0.25rem;
+					pointer-events: none;
+					font-size: 1rem;
+					font-weight: 700;
+					text-transform: uppercase;
+				}
+			}
+		}
+
+		& article {
+			display: flex;
+			/* align-items: center; */
+			gap: 1rem;
+			margin: 0;
+
+			&:hover {
+				.content {
+					transform: translateX(0.25rem);
+				}
+			}
+
+			& .content {
+				width: 100%;
+				border-radius: 0.5rem;
+				padding: 2rem 0.5rem;
+				position: relative;
+				transition: transform 0.2s ease-in-out;
+
+				& h3 {
+					margin: 0.1rem 0;
+				}
+
+				& p {
+					margin: 0;
+				}
+
+				& span {
+					color: black;
+					font-weight: 400;
+					font-size: 1.25rem;
+					display: inline-block;
+					font-style: italic;
+					text-decoration: underline;
+					text-decoration-thickness: 0.075rem;
+					text-underline-offset: 0.175rem;
+				}
+			}
+
+			& .graph {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				flex-shrink: 0;
+
+				& .vertical {
+					flex: 1;
+					width: 2px;
+					height: 100%;
+					background-color: rgba(0, 0, 0, 0.103);
+				}
+
+				& .dot {
+					shrink: 0;
+					width: 6px;
+					height: 6px;
+					border-radius: 50%;
+					background-color: black;
+				}
 			}
 		}
 	}
