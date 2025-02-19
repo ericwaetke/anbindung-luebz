@@ -1,0 +1,44 @@
+on:
+    workflow_dispatch:
+    push:
+        branches:
+            - main
+            - master
+name: 🚀 Deploy website on push
+
+jobs:
+    deploy:
+        name: 🏗️ Build
+        runs-on: ubuntu-latest
+        steps:
+            - name: 🚚 Get latest code
+              uses: actions/checkout@v3
+              with:
+                  fetch-depth: 0
+
+            - name: Install pnpm
+              uses: pnpm/action-setup@v2
+              with:
+                  version: 8
+
+            - name: 🔨 Build Project
+              run: |
+                  pnpm install
+                  pnpm run build
+
+            - name: Deploy files via SFTP
+              uses: pressidium/lftp-mirror-action@v1
+              with:
+                  # SFTP credentials
+                  host: ${{ secrets.FTP_HOST }}
+                  user: ${{ secrets.FTP_USERNAME }}
+                  pass: ${{ secrets.FTP_PASSWORD }}
+                  # lftp settings
+                  onlyNewer: true
+                  settings: "sftp:auto-confirm=yes"
+                  # Mirror command options
+                  localDir: "./dist/"
+                  remoteDir: "anbindung-luebz.ericwaetke.de/httpdocs"
+                  reverse: true
+                  ignoreFile: ".lftp_ignore"
+                  options: "--verbose"
