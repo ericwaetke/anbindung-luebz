@@ -1,5 +1,5 @@
 ---
-import '@fontsource-variable/yrsa';
+import "@fontsource-variable/yrsa"
 import { spring } from "motion"
 ---
 
@@ -10,7 +10,11 @@ import { spring } from "motion"
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
+		<title>Anbindung Lübz</title>
+		<script
+			defer
+			data-domain="anbindung-luebz.ericwaetke.de"
+			src="https://plausible.woven.design/js/script.js"></script>
 	</head>
 	<body>
 		<slot />
@@ -19,15 +23,31 @@ import { spring } from "motion"
 
 <style is:global define:vars={{ spring: spring(0.2, 0.7) }}>
 	:root {
-		--color-primary: #6C21A6;
+		--color-primary: #6c21a6;
 
-		--border-participate: color-mix(in srgb, var(--color-primary) 50%, white 0%);
-		--background-participate: color-mix(in srgb, var(--color-primary) 5%, white 0%);
+		--border-participate: color-mix(
+			in srgb,
+			var(--color-primary) 50%,
+			white 0%
+		);
+		--background-participate: color-mix(
+			in srgb,
+			var(--color-primary) 5%,
+			white 0%
+		);
 
 		--color-button-background: var(--color-primary);
-		--color-button-shadow: color-mix(in oklab, var(--color-primary) 50%, black 50%);
+		--color-button-shadow: color-mix(
+			in oklab,
+			var(--color-primary) 50%,
+			black 50%
+		);
 
-		--color-timeline-current-border: color-mix(in srgb, var(--color-primary) 20%, white 0%);
+		--color-timeline-current-border: color-mix(
+			in srgb,
+			var(--color-primary) 20%,
+			white 0%
+		);
 	}
 	* {
 		box-sizing: border-box;
@@ -36,7 +56,7 @@ import { spring } from "motion"
 		margin: 0 auto;
 		width: 100%;
 		height: 100%;
-		font-family: 'Yrsa Variable', serif;
+		font-family: "Yrsa Variable", serif;
 	}
 	body {
 		padding: 28px 16px;
